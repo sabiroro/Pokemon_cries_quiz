@@ -1,0 +1,2 @@
+Pokemon's cry XXX : https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/XXX.ogg
+PokeAPI : https://pokeapi.co/
