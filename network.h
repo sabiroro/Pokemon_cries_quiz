@@ -3,6 +3,7 @@
 
 #include <ESP8266WiFi.h>
 #include "env.h"
+#include "ui.h"
 
 
 void connect_wifi(WiFiClientSecure &client, const char* host, const int httpsPort) {
@@ -19,12 +20,16 @@ void connect_wifi(WiFiClientSecure &client, const char* host, const int httpsPor
   while ((WiFi.status() != WL_CONNECTED)) { // Wait for the Wi-Fi to connect
     delay(1000);
     Serial.print(++attempt); Serial.print(' ');
+    attempt_connection_screen(attempt);
 
     if (attempt == 15) { // If we wait more than 15 seconds
       Serial.println("\n Connection failed...");
+      attempt_connection_screen(-1);
       return;
     }
-
+  }
+  
+  attempt_connection_screen(0);
   Serial.println('\n');
   Serial.println("Connection established!");  
   Serial.print("IP address:\t");
@@ -37,7 +42,6 @@ void connect_wifi(WiFiClientSecure &client, const char* host, const int httpsPor
     return;
   }
   //Serial.println("Secured request done!");
-  }
 }
 
 
